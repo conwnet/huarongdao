@@ -100,7 +100,7 @@ let moveRight = (state, pos) => {
 
 /**
  * 使用 Array 实现的队列，本以为 Array 做队列可能会影响性能，
- * 实际使用发现没啥影响，主要是由于棋盘状态数太少了
+ * 实际尝试发现没啥影响，主要是由于棋盘状态数太少了，一般不到十万
  */
 class Queue extends Array {
     constructor(size) {
@@ -110,7 +110,7 @@ class Queue extends Array {
         this.size = size || 1048576;
     }
 
-    push(data) {
+    push (data) {
         if (this.fullFlag)
             throw new Error('Can not push a value into a full queue!');
         this[this.tail++] = data;
@@ -119,7 +119,7 @@ class Queue extends Array {
         return 1;
     }
 
-    shift() {
+    shift () {
         if (this.front === this.tail && !this.fullFlag)
             throw new Error('Can not shift a value from a empty queue!');
         let ret = this[this.front++];
@@ -128,7 +128,7 @@ class Queue extends Array {
         return ret;
     }
 
-    empty() {
+    empty () {
         return !this.fullFlag && this.front === this.tail;
     }
 }
@@ -139,10 +139,9 @@ class Queue extends Array {
  * @param {number} pos 位置
  */
 let getSolve = function (state) {
-    let que = new Queue(), vst = {[state]: 1}, result = [];
-    que.push(state);
+    let que = [state], vst = {[state]: 1}, result = [];
     
-    while(!que.empty()) {
+    while(que.length) {
         let cur = que.shift(), res = false;
 
         if (cur[13] === '5') {
@@ -161,14 +160,9 @@ let getSolve = function (state) {
     return result;
 }
 
-let state = '35131111341312212002'
-
-let begin = Date.now();
-
-console.log(getSolve(state).length);
-
-
-console.log(Date.now() - begin);
+export default {
+    moveUp, moveDown, moveLeft, moveRight, getSolve
+}
 
 /*
 

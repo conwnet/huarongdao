@@ -1,14 +1,17 @@
 <template>
     <rect
+        class="grid"
         :id="draging && 'draging'"
         :x="x"
         :y="y"
         :width="width"
         :height="height"
+        :data-type="this.type"
         @touchstart="handleTouchStart"
         @touchmove="handleTouchMove"
         @touchend="handleTouchEnd"
         @mousedown="handleMouseDown"
+        @mouseup="handleMouseUp"
     />
 </template>
 
@@ -17,8 +20,6 @@
 export default {
     props: ['type', 'position', 'startX', 'startY', 'unitSize', 'handleMove'],
     data () {
-        let size = { width: 0, height: 0 }
-        
         return {
             draging: false,
             x: this.startX,
@@ -83,22 +84,19 @@ export default {
             let event = document.createEvent('Events');
             event.initEvent('touchstart');
             event.targetTouches = [{clientX: e.clientX, clientY: e.clientY }];
-            let handleMouseMove = function (e) {
+            document.onmousemove = function (e) {
                 let event = document.createEvent('Events');
                 event.initEvent('touchmove');
                 event.targetTouches = [{clientX: e.clientX, clientY: e.clientY }];
                 target.dispatchEvent(event);
             }
-            let handleMouseUp = function (e) {
-                target.removeEventListener('mousemove', handleMouseMove);
-                let event = document.createEvent('Events');
-                event.initEvent('touchend');
-                target.dispatchEvent(event);
-                target.removeEventListener('mouseup', handleMouseUp);
-            }
-            target.addEventListener('mousemove', handleMouseMove);
-            target.addEventListener('mouseup', handleMouseUp);
             target.dispatchEvent(event);
+        },
+        handleMouseUp (e) {
+            document.onmousemove = null;
+            let event = document.createEvent('Events');
+            event.initEvent('touchend');
+            e.target.dispatchEvent(event);
         }
     }
 }
@@ -106,14 +104,18 @@ export default {
 </script>
 
 <style lang="less">
-    rect {
-        fill: gray;
+    .grid {
+        fill: #09c;
         stroke: #fff;
         stroke-width: 5;
 
         &#draging {
             stroke-width: 2;
-            stroke: #00f;
+            stroke: #0ff;
+        }
+
+        &[data-type="5"] {
+            fill: #f44;
         }
     }
 </style>

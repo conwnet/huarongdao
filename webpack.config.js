@@ -9,6 +9,7 @@ module.exports = {
     },
     devtool: 'eval-source-map',
     devServer: {
+        open: true,
         host: '0.0.0.0'
     },
     module: {
@@ -16,16 +17,13 @@ module.exports = {
             test: /\.js$/,
             use: {
                 loader: 'babel-loader',
-                options: {
-                    presets: [ 'es2015' ]
-                }
+                options: { presets: [ 'es2015' ] }
             },
             exclude: /node_modules/,
             
         }, {
             test: /\.vue$/,
-            use: 'vue-loader',
-            exclude: /node_modules/
+            use: 'vue-loader'
         }]
     },
     plugins: [

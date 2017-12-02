@@ -41,7 +41,7 @@ export default {
     data () {
         return {
             state: '35131111341312212002',
-            unitSize: Math.min(window.innerWidth / 5, 100)
+            unitSize: Math.min(window.innerWidth / 5,   )
         }
     },
     methods: {

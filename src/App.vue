@@ -1,16 +1,16 @@
 <template>
     <div id="main" @touchstart="e => e.preventDefault()">
-        <Board />
+        <Menu />
     </div>
 </template>
 
 <script>
 
 import Board from './Component/Board';
-import core from './core';
+import Menu from './Component/Menu';
 
 export default {
-    components: { Board }
+    components: { Board, Menu }
 }
 
 </script>
@@ -25,6 +25,5 @@ export default {
         position: absolute;
         user-select: none;
     }
-    
 
 </style>

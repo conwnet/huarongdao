@@ -1,12 +1,14 @@
 <template>
     <rect
         class="grid"
+        :class="{ success }"
         :id="draging && 'draging'"
         :x="x"
         :y="y"
         :width="width"
         :height="height"
         :data-type="this.type"
+        :stroke-width="this.unitSize / 25"
         @touchstart="handleTouchStart"
         @touchmove="handleTouchMove"
         @touchend="handleTouchEnd"
@@ -18,7 +20,7 @@
 <script>
 
 export default {
-    props: ['type', 'position', 'startX', 'startY', 'unitSize', 'handleMove'],
+    props: ['type', 'position', 'startX', 'startY', 'unitSize', 'handleMove', 'success'],
     data () {
         return {
             draging: false,
@@ -27,6 +29,10 @@ export default {
             previousX: 0,
             previousY: 0
         }
+    },
+    watch: {
+        startX (newValue) { this.x = newValue; },
+        startY (newValue) { this.y = newValue; }
     },
     computed: {
         height () {
@@ -107,15 +113,17 @@ export default {
     .grid {
         fill: #09c;
         stroke: #fff;
-        stroke-width: 5;
 
         &#draging {
-            stroke-width: 2;
             stroke: #0ff;
         }
 
         &[data-type="5"] {
             fill: #f44;
+
+            &.success {
+                fill: #0a0;
+            }
         }
     }
 </style>

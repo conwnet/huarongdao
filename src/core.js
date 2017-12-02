@@ -147,6 +147,7 @@ let getSolve = function (state) {
         if (cur[13] === '5') {
             for(; cur !== 1; cur = vst[cur])
                 result.push(cur);
+            result.pop();
             break;
         }
 

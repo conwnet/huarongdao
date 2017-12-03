@@ -48,7 +48,7 @@
                 </span>
             </h1>
             <div>
-                <img id="code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A//conwnet.github.io/huarongdao/dist/index.html" />
+                <img id="code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A//conwnet.github.io/huarongdao/dist/" />
                 <p style="color: #666;">手机端扫码体验</p>
             </div>
             <h2>
@@ -70,13 +70,13 @@
             <p class="tip">顺便吐槽，原文《雨声淅沥》布局有误</p>
         </div>
         <div class="game">
-            <iframe id="demo" src="https://conwnet.github.io/huarongdao/dist/index.html"></iframe>
+            <iframe id="demo" src="https://conwnet.github.io/huarongdao/dist/"></iframe>
         </div>
     </div>
     <script>    
     function changeState () {
         var state = document.getElementById('state').value;
-        let gameUrl = 'https://conwnet.github.io/huarongdao/dist/index.html#' + state;
+        let gameUrl = 'https://conwnet.github.io/huarongdao/dist/#' + state;
         document.getElementById('demo').src = gameUrl;
         document.getElementById('code').src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + escape(gameUrl);
     }

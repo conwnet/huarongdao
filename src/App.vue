@@ -3,9 +3,9 @@
         <Ground :unitSize="unitSize" style="position: absolute; top: 0; left: 0;" />
         <Board :unitSize="unitSize" :layout="layout"
             :style="{ position: 'absolute', top: unitSize * 0.8, left: unitSize * 0.5 }" />
-        <div :style="{ top: `${(unitSize * 0.8 - 34) / 2}px`, left: `${(unitSize * 5 - 104) / 2}px` }"
+        <div :style="{ top: `${(unitSize * 0.8 - 34) / 2}px`, left: `${(unitSize * 5 - 124) / 2}px` }"
             class="select-btn" @click="showLevel = true;">{{ title }}</div>
-        <Level :show="showLevel" :handleSelect="handleSelect" />
+        <Level :unitSize="unitSize" :show="showLevel" :handleSelect="handleSelect" />
     </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
     created () {
         window.onresize = () => this.unitSize = window.innerWidth / 5;
         window.onhashchange = () => location.hash &&
-            (this.layout = location.hash.slice(1));
+            (this.layout = location.hash.slice(1)) && (this.title = '自定义');
 
     }
 }
@@ -56,7 +56,7 @@ export default {
             background-color: #ccc;
             border: 2px solid #aaa;
             border-radius: 5px;
-            width: 100px;
+            min-width: 120px;
             line-height: 30px;
             text-align: center;
             cursor: pointer;

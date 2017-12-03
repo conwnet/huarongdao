@@ -21,7 +21,7 @@ export default {
         return {
             unitSize: window.innerWidth / 5,
             layout: '22222222222222222222',
-            title: '请选择关卡',
+            title: '选择关卡',
             showLevel: false
         }
     },

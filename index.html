@@ -5,8 +5,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>华容道</title>
+    <style>
+        html, body { margin: 0; padding: 0; }
+
+        .container {
+            display: flex;
+            background-color: #fffbe8;   
+        }
+
+        .content {
+            flex: 3;
+            text-align: center;
+        }
+
+        .content h1 {
+            color: #d64c28;
+            font-size: 40px;
+        }
+
+        .code div {
+            height: 180px;
+            background-image: url(code.png);
+            background-repeat: no-repeat;
+            background-size: 180px;
+            background-position: 50% 50%;
+        }
+
+        .custom a {
+            font-size: 16px;
+            color: #f44;
+            text-decoration: none;
+        }
+        .custom a:hover { color: #0a0; }
+        .custom a:active { color: #f00; }
+
+        .custom input {
+            height: 25px;
+        }
+
+        .game {
+            flex: 2;
+        }
+
+        .tip {
+            color: #666;
+        }
+
+        .tip a { color: #00f; text-decoration: none; }
+
+        .game iframe {
+            margin: 20px auto;
+            width: 375px;
+            height: 547px;
+            border-width: 0;
+            display: block; 
+        }
+
+    </style>
 </head>
-<body ontouchstart>
-    <div id="root"></div>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>华 容 道
+                <span style="position: relative;">
+                    <iframe style="position: absolute; top: 15px; left: 10px;"
+                        src="https://ghbtns.com/github-btn.html?user=conwnet&repo=huarongdao&type=star&count=true&v=2"
+                        frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+                </span>
+            </h1>
+            <div class="code">
+                <div></div>
+                手机端扫码
+            </div>
+            <h2>
+                <span style="color: #f22;">解不出来了？</span>
+                点击<span style="color: #0a0;">绿色方块</span>可以自动求解</h2>
+            <div class="custom">
+                <h2>你也可以
+                    <span style="color: #00a;">自定义布局</span>
+                    <a href="#">(怎么做？)</a>
+                </h2>
+                <div>
+                    <input type="text" id="state" placeholder="自定义序列" maxlength="20" />
+                    <input type="button" value="自定义" onclick="changeState()" />
+                </div>
+            </div>
+            <p class="tip">大多数布局来自
+                <a href="https://zh.wikipedia.org/wiki/%E8%8F%AF%E5%AE%B9%E9%81%93_(%E9%81%8A%E6%88%B2)" target="_blank">维基百科</a>
+            </p>
+            <p class="tip">顺便吐槽，原文《雨声淅沥》布局有误</p>
+        </div>
+        <div class="game">
+            <iframe src="dist/index.html"></iframe>
+        </div>
+    </div>
+    <script>
+    
+    function changeState () {
+        var state = document.getElementById('state').value;
+        var frame = document.getElementsByTagName('iframe')[0];
+        frame.src = 'dist/index.html#' + state;
+    }
+
+    </script>
 </body>
 </html>

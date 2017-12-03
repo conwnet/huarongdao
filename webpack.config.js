@@ -7,7 +7,7 @@ module.exports = {
         path: __dirname + '/dist',
         filename: 'bundle-[hash].js'
     },
-    devtool: 'eval-source-map',
+    // devtool: 'eval-source-map',
     devServer: {
         open: true,
         host: '0.0.0.0'
@@ -15,19 +15,14 @@ module.exports = {
     module: {
         rules: [{
             test: /\.js$/,
-            use: {
-                loader: 'babel-loader',
-                options: { presets: [ 'es2015' ] }
-            },
-            exclude: /node_modules/,
-            
+            use: 'babel-loader'         
         }, {
             test: /\.vue$/,
             use: 'vue-loader'
         }]
     },
     plugins: [
-        new HtmlWebpackPlugin({ template: __dirname + '/index.html' }),
+        new HtmlWebpackPlugin({ template: __dirname + '/index.tpl.html' }),
         new webpack.optimize.UglifyJsPlugin()
     ]
 }

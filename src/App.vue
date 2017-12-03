@@ -33,6 +33,7 @@ export default {
         }
     },
     created () {
+        location.hash && (this.layout = location.hash.slice(1)) && (this.title = '自定义');
         window.onresize = () => this.unitSize = window.innerWidth / 5;
         window.onhashchange = () => location.hash &&
             (this.layout = location.hash.slice(1)) && (this.title = '自定义');

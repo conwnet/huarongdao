@@ -7,30 +7,15 @@
     <title>华容道</title>
     <style>
         html, body { margin: 0; padding: 0; }
-
-        .container {
-            display: flex;
-            background-color: #fffbe8;   
+        .container { display: flex; background-color: #fffbe8; }
+        .content { flex: 3; text-align: center; }
+        .content h1 { color: #d64c28; font-size: 40px; }    
+        #code {
+            height: 150px;
+            width: 150px;
+            margin: 0 auto;
+            display: block;
         }
-
-        .content {
-            flex: 3;
-            text-align: center;
-        }
-
-        .content h1 {
-            color: #d64c28;
-            font-size: 40px;
-        }
-
-        .code div {
-            height: 180px;
-            background-image: url(code.png);
-            background-repeat: no-repeat;
-            background-size: 180px;
-            background-position: 50% 50%;
-        }
-
         .custom a {
             font-size: 16px;
             color: #f44;
@@ -38,22 +23,11 @@
         }
         .custom a:hover { color: #0a0; }
         .custom a:active { color: #f00; }
-
-        .custom input {
-            height: 25px;
-        }
-
-        .game {
-            flex: 2;
-        }
-
-        .tip {
-            color: #666;
-        }
-
+        .custom input { height: 25px; }
+        .game { flex: 2; }
+        .tip { color: #666; }
         .tip a { color: #00f; text-decoration: none; }
-
-        .game iframe {
+        #demo {
             margin: 20px auto;
             width: 375px;
             height: 547px;
@@ -73,9 +47,9 @@
                         frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
                 </span>
             </h1>
-            <div class="code">
-                <div></div>
-                手机端扫码
+            <div>
+                <img id="code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A//conwnet.github.io/huarongdao/dist/index.html" />
+                <p style="color: #666;">手机端扫码体验</p>
             </div>
             <h2>
                 <span style="color: #f22;">解不出来了？</span>
@@ -96,17 +70,16 @@
             <p class="tip">顺便吐槽，原文《雨声淅沥》布局有误</p>
         </div>
         <div class="game">
-            <iframe src="dist/index.html"></iframe>
+            <iframe id="demo" src="https://conwnet.github.io/huarongdao/dist/index.html"></iframe>
         </div>
     </div>
-    <script>
-    
+    <script>    
     function changeState () {
         var state = document.getElementById('state').value;
-        var frame = document.getElementsByTagName('iframe')[0];
-        frame.src = 'dist/index.html#' + state;
+        let gameUrl = 'https://conwnet.github.io/huarongdao/dist/index.html#' + state;
+        document.getElementById('demo').src = gameUrl;
+        document.getElementById('code').src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + escape(gameUrl);
     }
-
     </script>
 </body>
 </html>
